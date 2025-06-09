@@ -1,6 +1,6 @@
 # 🚀 Web Dev Cohort 1.0 – My Learning Journey
 
-This repository documents my entire progress through the **Web Development Cohort 1.0** by [Chai aur Code](https://chaiaurcode.com), mentored by **Hitesh Choudhary** and **Piyush Garg**.
+This repository documents my entire progress through the **Web Development Cohort 1.0** by [Chai aur Code](https://courses.chaicode.com/learn/Web-Dev-Cohort/Web-Dev-Cohort-Live), mentored by **Hitesh Choudhary** and **Piyush Garg**.
 
 I’ll be uploading notes, code, weekly projects, and full-stack apps as I build them during the course.
 
