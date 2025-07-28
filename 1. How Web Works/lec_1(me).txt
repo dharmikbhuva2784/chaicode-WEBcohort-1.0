@@ -1,0 +1,121 @@
+How The Web Works ?
+
+HTTP
+Hyper Text Transfer Protocol
+
+Hypertext - Text Document which contains link which points to any other document
+            Hyper link Text (Web Docs)
+            documents which are pointing to any other document
+
+Transfer - Sharing of these web docs
+Protocol - Set of Rules to share this web docs
+
+HTTP is Human Readable Protocol
+
+Stateless Protocol - 
+
+state means we maintain the state every time we visit the page.
+Stateless means everytime you visit a page, you are a new user
+(no memory of prev. req.)
+you do not require to store the cuurent state
+
+ex: incognito mode
+
+in HTTP, there is no rule so it can maintain the states
+we still keep it Stateless
+
+
+                request
+|----------| --------------------> |------|
+| Computer |                       |Server|
+|__________| <-------------------- |______|
+                response
+
+Session:
+Sores state between frontend and backend
+
+we store the interaction between browser and server in the form of cookies
+
+
+|----------|                       |------|
+| Browser  | <-------------------> |Server|
+|__________|        cookie         |______|
+
+cookies are key value pair information
+ex: name = "John"
+
+browser needs to send the information to server
+and server also needs to send the information to browser
+
+so cookie comes from both side
+(cookie = information)
+
+HTTP Headers (information)
+but what information?
+- client
+- browser info
+- date time
+- cookie to store
+
+Request - Response Model
+
+                get
+|----------| --------------------> |------|
+| Browser  |                       |Server|
+|__________| <-------------------- |______|
+                200
+
+type of request = [get,post,delete,..]
+response code = [200,404,500,..]
+
+we send http Headers with request
+a response can be or cannot be a cookie
+
+- what action to perform
+- wher to perform.   http://api.hitesh.ai/auth
+- was it done  200,404
+
+HTTP/2
+
+- 75% to 80% of web traffic is being handled by HTTP/2
+(one of most powerful version)
+- (not related to web3)
+
+- http means http2
+    |
+    --> hhtp/1.1 is a fallback & is still used
+
+http/1.1 can handle only one request at a time
+while http/2 can handle multiple request at a time
+when we request for some important info. , http/2 also send other important info. with requested info.
+
+this is called multiplexing (many files at same time)
+http2 uses compression.
+http2 also uses encryption. (https)
+
+(in aws, we don't use https for internal communication)
+
+- TCP (Transmission control Protocol)
+- FTP (file Transfer Protocol)
+- IP (Internet Protocol)
+- URL (Uniform resource locator)
+- DNS (Domain name system)
+
+- Header (Pass Addtional information)
+- Payload (Actual data - email, Pass)
+- Cache (store the data)
+
+
+|----------|                       |--------|
+|          |-----------------------|        |
+| Browser  |-----------------------| Server |
+|__________|                       |________|
+
+- setup tcp connection
+- exchange tls certificate
+- send verb + url + data + more
+- gets the response back with code & data (img, csv, text)
+- tcp connection is closed (Stateless)
+- this is how web works
+
+we use wireshark, ns3 to visualize this process

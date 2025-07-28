@@ -1,0 +1,3 @@
+to write your 10 favourite array methods with your creative examples
+
+write article on hashnode using #chaicode

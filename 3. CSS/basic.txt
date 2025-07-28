@@ -1,0 +1,51 @@
+html is skeleton
+it provides structure
+skeleton of webpage
+
+on the top of skeleton comes skin.
+here in web d. on the top of html comes css.
+it provides skin/beauty to html
+
+then comes the brain
+it gives functionality to the whole body.
+here JS is the brain of body
+it provides functionality to our webpage.
+
+this 3 language(html,css,js) are only used for web developement.
+
+when we add button to html page
+it shows different on chrome and different on safari browser because both the browsers have different default style sheet.
+
+this style sheet is called user agent stylesheet.
+though we cannot change it, but we can override it.
+
+css is nothing but the overridding of the styles.
+css - cascading stylesheets
+
+cascading - overridding, overlapping
+          - ex: suppose we have 2 boxes, one of yellow color and another one of blue color, suppose we have placed blue box exact one top of yellow box, so here, we can say that blue box cascaded the yellow box.this doesn't mean that yellow box is removed, yellow box is still there under blue box. it means that blue box overlapped yellow box. that is the priciple of cascading.
+
+          so let's cascade it.
+
+css syntax
+
+property : value;
+ex: background-color : lightgreen;
+
+3 ways to add css
+
+1. inline - styling comes in respective attribute
+          - when to use : when you want to style any specific element.
+          - syntax = style="property : value;"
+          - ex: style="color : blue;"
+
+2. internal - a style tag is created inside head tag
+            - all the css code comes under this style tag
+            - syntax: selector{
+                property1 : value1;
+                property2 : value2;
+            }
+3. external 
+
+--------FLEXBOX--------
+

@@ -1,0 +1,6 @@
+cascading - pr
+specificity algorithm
+|^| 1. inline   - most prio
+|^| 2. id
+|^| 3. class
+|^| 4. tag      - least prio

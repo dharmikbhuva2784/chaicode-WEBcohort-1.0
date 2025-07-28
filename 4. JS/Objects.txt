@@ -1,0 +1,341 @@
+OBJECTS, MEMORY ALLOCATION, GARBAGE COLLECTOR AND MEMORY LEAK
+
+- objects - data structure in JS
+- data structure - how you store your data in memory
+- ex: stack , queue, key value pairs
+
+- There are primarily 2 type of data structures
+
+1. primitive
+
+- Data structures which allows our language to support out of the box
+- These are inbuilt data structures in javascript
+- ex: array
+- (array is built in data structures in javascript)
+
+2. non-primitive
+
+- These are non inbuilt data-types in javascript
+- ex: stack, linked list, graph
+- (stack is not in built in javascript, we will have to write custom code to implement stack)
+
+- we design the non-primitive data-types
+
+OBJECTS
+
+- we store data in array in sequential manner
+- in object, we store data in key-value pairs
+- to create objects we use {} (curly braces)
+- we can create objects inside an object
+- object can have functions (called as methods)
+
+Ex: 
+
+const person = {
+    firstname : ‘John,
+    lastname : ‘wick’,
+    hobbies : [‘reading’’,reading’,’travelling’],
+    ismarried : false
+
+    getfullname : function(){
+        return “John wick”
+    }
+
+    address : {
+        house_no: 1,
+        street: 3,
+        countrycode: “US”,
+        state : “NY”,
+        pincode: 123456
+    }
+}
+
+Usecases:
+- to group the data with keys
+- (sql also have key value type data)
+
+main goal of our code:
+- to solve the real world Problems
+
+- but we will require to represent the real world entities in our code
+
+- ex:
+- we have a pen as an object in real life
+
+Why we considered pen as object?
+- because it has physical properties
+
+- we have a remote as an object in real life
+
+- but this remote object is different  from pen object
+
+if we want to represent the real life remote object in our code, how we can do that?
+- we can write that in the form of object
+
+ex : 
+const remote = {
+    color : "black",
+    brand : "samsung",
+
+    dimensions: {
+        height : 10,
+        width : 5,
+        depth : 1
+    },
+
+    turnoff : function () {
+        console.log(`turning off the tv`);   
+    },
+
+    volumeup : function(){
+        console.log(`increasing the volume`);
+    }
+}
+
+- here we are able to represent the real world object into code
+- this is the whole purpose of the objects
+
+———————————————————————————————
+- how objects are stored in memory:
+- variable is a memory
+- in any language there are 2 types of memory
+———————————————————————————————
+
+1.stack
+
+- All the variables are stored inside stack memory
+
+ex: 
+const fname = "spongebob"
+const lname = "squidward"
+
+- here fname and lname will be stored inside stack memory
+- when the program execution will be completed, these variables will be removed (popped out) from stack memory
+
+- Problem = stack can't grow
+- it means the size of space allocated to variables is fixed not dynamic
+- so stack doesn't work for dynamic datatypes
+
+2. heap
+
+- heap is used for dynamic memory allocation (e.g. objects, arrays)
+
+ex: in array (in future, we may require to add more elements in array)
+    object (in future, we may require to add more key-value pairs in object)
+
+    const p1 = {
+        const fname = "Piyush",
+        const lname = "Garg"
+    }
+
+- now the code runner will find p1 in both memory stack and heap
+- So it will take time
+- To avoid this, we use an hybrid approach
+
+- we have our object stored in heap memory, now that object will have a memory location
+- let's say p1 have memory location 0x1
+- now we will store 0x1 in p1 instead of object
+- we will store this p1 (location) to stack
+- in stack, p1 will become a pointer of a memory location in heap memory
+
+- p1 does not have it's own value, it's just pointing to a memory location in heap where our actual data is lying
+- that's why it is called pointer
+
+- now we created p2
+
+    let p2 = p1
+
+- but p1 have the value 0x1
+- so the 0x1 will be stored inside p2
+- so p2 = 0x1
+
+- this p2 will be pushed in stack memory
+- now p1 and p2 are pointing to the same location in heap memory
+- From now any changes made in p2 will also change p1 and vice versa
+- here we used one memory, but there are 2 pointers for that one memory
+
+- if we print p1 or p2, the compiler won't return the memory address but it will go to that memory location, fetch the data and then it will return us the data.
+
+
+Trade Off:
+
+- if we keep anything in stack, we can't grow them
+- but the data will be quickly accessible.
+- read operation will be faster
+
+- if we keep anything in memory, we can grow the data (add the data base on needs)
+- but the data will not be quickly accessible
+- because, 
+    - first we will have to go to the stack
+    - find the variable
+    - then we get the memory address
+    - then we have to find that address in memory
+    - then we will get the data
+
+- advantage: 
+- we get dynamic memory
+
+- disadvantage:
+- time complexity high
+- consumes computational power
+
+- we can't keep everything in heap
+- because, it uses more computational resources and have high time complexity
+- which will slow down the read and write operation
+
+- primitive datatypes will be stored inside stack
+    - ex: strings, numbers, booleans
+- because the size of these variables are fixed.
+
+- nonprimitive datatypes will be stored inside heap
+- ex: arrays, objects, heap, graph, tree
+
+- but their pointers of this datatypes will be stored inside stack
+- because, whenever we try to access any variable, compiler will always search it in stack
+
+- that's how stack and heap memory works
+
+
+Garbage Collector:
+
+const p1 = {
+        const fname = "Piyush",
+        const lname = "Garg"
+    }
+
+let p2 = p1
+
+- let's say we removed p1 and p2 from stack
+- now p1 and p2 will go out of scope
+
+- but only removing it from stack is not sufficient
+- because, those were the address to the actual data resting inside heap memory
+- so, we will also require to clear the memory which was allocated for the object in heap
+
+- In javascript, we do not require to do this manually
+- because, Garbage Collector is smart enough that since p2 and p1 is removed from stack, it will find "is there any pointer/variable for the memory location 0x1 ?"
+
+Is there any variable which is holding memory location 0x1?
+- No
+
+- so, the javascript Garbage Collector will automatically clear that object memory from heap
+
+- if there is no Garbage Collector in particular language,
+- then we will have to manually remove p1 object memory from heap
+- Ex: C, C++
+
+- to do that manually
+- step1 = clear the memory from heap
+- step2 = remove the variable from stack
+- there are language specific functions to perform this operations
+
+
+Memory Leak:
+
+const p1 = {
+        const fname = "Piyush",
+        const lname = "Garg"
+    }
+
+let p2 = p1
+
+If we delete p2 from stack, do we require to clear the object location?
+- no
+- because, we still have one variable p1 in stack which is holding the address of this object
+
+- let's say 2 different developers are working together
+
+- dev1 made p1 var
+- dev2 made p2 var
+
+- both p1 and p2 are pointing to the same location in heap memory
+
+- now dev2 no longer need p2 and he wants to delete it.
+- so dev2 deletes p2 from stack and it's memory from heap also.
+- now we made p2's memory free
+- so it can be used to store other data.
+
+- now p1 have the address of the free memory in heap
+- so now p1 is an unknown pointer, and it's pointing to memory that contains other's data
+- now if p1 tries to change the data on that location, but that location have someone's data.
+
+- so the dev1 is unaware of this deletion and deallocation memory process
+- and dev1 will accidentally change the data resting at that location with p1
+
+- This concept is called Memory Leak
+
+- this can also corrupt operating system.
+- So for not having Garbage Collector in languages like C or C++, where we manually manage the memory, we have to be very careful that if we are clearing a memory, is there exists any pointer which points to that memory location ?
+- In javascript this task is automatically done by Garbage Collector, so we don't require to manually allocate or deallocate the memory.
+________________________________________
+
+HOW TO COPY ONE OBJECT INTO ANOTHER WITH TWO DIFFERENT MEMORY LOCATION
+
+WAY 1:
+- We can use spread operator to copy one object into another with different memory locations
+- EX:
+
+let p1 = {
+    fname : 'John',
+    lname : 'wick',
+
+    address : {
+        house_no: 1,
+        street: 3,
+        countrycode: "IN",
+        state : "GJ",
+        pincode: 360005
+    }
+}
+
+let p2 = {
+	…p1
+}
+
+PROBLEM:
+- We can’t copy the inside’s objects (though we can do it but, that way consumes time in the case of multiple objects inside object)
+- this method copies only outer elements of the objects and don't get 
+into deep inner objects
+- spread operator only works on first level things and do not work with inner objects
+- this concept is called shallow copying.
+- but we want to deep copy everything
+- if we find any nested objects, copy them too.
+- how we can do that?
+
+WAY 2:
+- we convert the object into string
+- then we can copy the string
+- then we can convert string back to an object
+- then we can allocate that object a different memory
+
+- We can use serialisation and deserialisation concept
+
+- Steps:
+- 1. Serialization - first convert object to string.
+- 2. Deserialisation - convert back the string to the object
+- 3. Deep Copy - copy the object to another variable
+
+Ex:
+let p1 = {
+    fname : 'John',
+    lname : 'wick',
+
+    address : {
+        house_no: 1,
+        street: 3,
+        countrycode: "IN",
+        state : "GJ",
+        pincode: 360005
+    }
+}
+
+const p1_string = JSON.stringify(p1);
+let p2 = JSON.parse(p1_string);
+
+- JSON.stringify method converts the p1 object to string
+- Then we stored that string in a variable named p1_string
+- Now we use JSON.parse method to convert string back to object
+- Then we store that object into p2
+
+- We can share p1_string to anyone who wants create an object
+- Because p1_string is just a text/string, and we can fetch back our object using JSON.parse methodv

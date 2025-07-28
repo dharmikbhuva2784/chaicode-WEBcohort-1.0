@@ -1,0 +1,73 @@
+How A message is trasnfered over internet
+
+there is a model to tranfer the data
+
+which is called OSI
+
+OSI - Open System InterConnection
+OSI model have 7 layers
+these 7 layers are responsible to transfer your data from one place to another
+
+what are the the 7 layers
+__________________________________________________________________________
+
+7. Application Layer    --|
+6. Presentation Layer   --|---- Application Layer - Backend Servers
+5. Session Layer        --|                         Ex: Using Node.js, Python
+
+Application sends it's data to Transport layer, so the Transport layer decides to use which Protocol to transfer the data over internet
+
+__________________________________________________________________________
+4. Transport Layer
+
+Protocols like TCP / UDP works on Transport layer
+we can transfer the data by using only these 2 Protocols
+__________________________________________________________________________
+3. Network Layer
+
+Network layer decides the routing part of the transmmission
+(Ip addressing ka kaam karti hai)
+Like, from where to send the data
+and where to send the data
+
+Network layer adds ip address frames to the packet and sends to the data link layer
+__________________________________________________________________________
+2. Data Link Layer
+
+This layer work on frames
+There is a frame for everything
+there are different frames fro IP, Headers etc.
+Ex: if we want to send a packet to a user
+    there will be many frames in packet.
+    on the top, one frame will have an IP address (where to send the packet and from where it's coming), Headers, Protocol
+
+    These all are the frames
+    but to tranfer these frames, data link layer send these frames to the physical layer
+
+    these frames travels on physical layer using 0's and 1's
+__________________________________________________________________________
+1. Physical Layer
+
+It contains physical wires, cables, machine etc.
+data is transfered from and to the physical devices
+Physical layer work on bits (e.g. 0's and 1's)
+
+__________________________________________________________________________
+
+What is TCP and UDP? (works on Transport layer)
+which one to use when?
+
+TCP - transmmission Control Protocol
+
+TCP is reliable, there no data loss during transmission
+It works in ordered way, and uses 3 way handshake
+
+                request
+|----------| --------------------> |------|
+| Client   |                       |Server|
+|__________| <-------------------- |______|
+                response
+
+client wants to send it's data to backend
+client have data in packets which he wants to send to backend server
+

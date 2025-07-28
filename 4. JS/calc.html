@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>enter first number:</p>
+    <input type="number" id="a">
+    <p>enter second number:</p>
+    <input type="number" id="b">
+    <p>enter operation (+, -, *, /):</p>
+    <input type="text" id="op" placeholder="Enter +, -, *, or /">
+    <br><br>
+    <input type="submit" value="submit" id="submit">
+    <p id="result"></p>
+    <script>
+        let submit = document.getElementById("submit");
+        let result = document.getElementById("result");
+
+        submit.onclick = function(){
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let op = document.getElementById("op").value;
+            
+            let n1 = Number(a);
+            let n2 = Number(b);
+            result.innerHTML = calc(n1,n2,op);
+        }
+        
+        function calc(a,b,op){
+            switch(op){
+                case '+':
+                    return a+b;
+                case '-':
+                    return a-b;
+                case '*':
+                    return a*b;
+                case '/':
+                    if(b!==0){
+                        return a/b;
+                    }else{
+                        return "division by 0 is not possible";
+                    }
+                default:
+                    return "Invalid operation!!!"
+            }
+        }
+    </script>
+</body>
+</html>

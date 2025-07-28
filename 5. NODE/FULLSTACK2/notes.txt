@@ -1,0 +1,65 @@
+nodemon - node ko monitor karta hai aur zarurat pade to node ko reload kar deta hai
+
+2 dependencies
+
+1. crucial dependencies
+2. development dependencies
+
+
+now we have to import .env variables from .env file to index.js
+for that we have a module named "dotenv"
+which brings all the .env variables to process.env
+
+there, we can use dotconfig() also
+if we have a separate path of .env then we will have to write it in between ()
+
+
+const port = process.env.PORT || 4000;
+
+agar process.env ke andar port miljaaye to achha haiagar nahi mila to 4000 miljaayega
+
+why - bcs of production
+when we deploy our code on render, digital ocean, aws, at that time, this is considered as a best practice
+
+bcs we want to know if env variables are loaded perfectly or not
+bcs server will never allow us to take our port
+
+it decide based on what env variables it is loading
+
+bsc server allocates port to us, not we define the port.
+
+
+cors
+
+in past, with laravel or php, we had the frontend and the backend both together.
+at that time we didn't have frontend and backend separate
+
+after time passed, we separated both frontend and backend
+
+now user will send the req to frontend
+and frontend will send the req to backend
+
+we never expect that client directly send req to the backend
+we expect that only our frontend sends req to our backend
+
+how to restrict that - using cors in index.js
+
+when our frontend will send req to backend, it not necessary that we will interact only with browser
+
+we want to send json data { name : "dharmik" } to our backend
+so in the backend we will write app.use(express.json())
+
+this will allow backend to accept json
+
+sometimes we also try to send data with url
+so in the backend we will write app.use(express.urlencoded({extended:true}));
+
+this will allow our backend to accept data from url
+
+
+in financial data
+we don't store in float or int
+we must store data in paisa as long as possible
+
+
+because try 0.1 + 0.2 in js

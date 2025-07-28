@@ -1,0 +1,161 @@
+when we create an array
+there are some already defined function for this array
+
+ex:
+array.map
+array.foreach
+array.filter
+
+const arr = [1,2,3,4,5]
+arr.map
+arr.foreach
+arr.filter
+
+how these functions are available for arr ?
+
+here comes the concept of Prototype...
+
+Prototype:
+Prototype is nothing but an object in JS
+
+when we try to write "const arr = [1,2,3,4,5]", JS recognizes that you are trying to create an array variable "arr"
+
+There are some predefined functions on array
+
+now JS will create an object called "prototype" inside "arr" variable
+It will create a copy of all the array functions in prototype object
+
+when we type "arr.", the dot operator will check the avialable functions
+
+Similarly when we try to create a string "str", JS will create an object "prototype" in "str" variable and copy all the predefined string functions to this "prototype" object.
+
+There is a base class of array named "Array"
+There is a prototype object inside "Array" (Array.prototype)
+This prototype object includes all the functions of the array (e.g. map, filter,etc...)
+
+Array.prototype = {properties}
+
+when we create "arr" object of Array class,
+JS creates a property named "arr.__proto__" and make it equal to "Array.prototype"
+
+arr.__proto__ = Array.prototype
+
+Ex:
+
+Father = {
+    skin,
+    height,
+    eyeColor
+}
+
+Child = {}
+
+Father.prototype = {}
+  ↑
+Child.__proto__ = Father.prototype
+
+here father is the parent class and child is child-class
+so the child will all the properties resting in Father.prototype
+here Child is linked to the Father (Child belongs to Father)
+
+Ex:
+
+String.prototype = {}
+const str = "HELLO"
+str.__proto__ = String.prototype
+
+str.length
+now JS will check if str object contains ".length" method (user defined)
+- No
+
+So now it will go to str.__proto__ and there it will check for ".length"
+does str.__proto__ have ".length" method?
+- Yes
+
+const str = "HELLO"
+str.__proto__.length = 5
+
+So, from there it will return 5 (string length)
+
+We can also defined custom property inside prototype object
+
+const arr = [1,2,3,4,5];
+
+Array.prototype.hello = function(){
+    console.log("hello world");
+}
+
+arr.hello();
+
+Output:
+hello world
+
+same rules will be applied to object
+
+Ex:
+
+let obj = {
+    name: "John",
+    age: 30,
+    city: "New York",
+    hobbies: ["reading", "traveling", "swimming"],
+    isEmployed: true
+}
+
+Object.prototype.chai = function(){
+    console.log(`Tea Time`);
+}
+
+obj.chai();
+
+Output:
+Tea Time
+
+But, One Question ?
+
+Who wrote this methods inside Array.prototype / Object.prototype / String.prototype
+- Browser provides this functionality
+- Chrome developers wrote this values in JS engine for Chrome
+- Firefox developers wrote this values in JS engine for Firefox
+
+If we have JS code in Our device
+It may run same on different Browsers or it may run differently
+because, every browser has it's own different algorithms
+
+the result of code in every browser will be same
+but the internal process may be different
+
+This will affect the performance of the browser
+So we can differentiate browsers from performance
+
+One js code can be more optimized on chrome and less optimized on firefox
+
+Example of less optimized browser : Internet Explorer
+Using Internet Explorer can crash the website
+because, it does not have some specific function in their prototypes
+
+That's why some websites work best on modern updated browsers
+
+How to solve this Problem?
+- if some specific function is not available,
+- do not let user use the website
+- or throw some error
+
+Ex:
+if(!Array.prototype.fill) throw new Error(`Please update your browser`)
+
+- second solution is that we can implement that function customly by code
+
+Ex:
+if(!Array.prototype.custom){
+    Array.prototype.custom = function () {
+        console.log(`custom created fill function`);
+    }
+}
+arr.custom();
+
+Output:
+custom fill function
+
+this customly created function is called a polyfill function
+

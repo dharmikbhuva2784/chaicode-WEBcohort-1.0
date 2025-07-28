@@ -1,0 +1,203 @@
+any sensitive data comes under .env or .env.sample file
+
+we can use ports like 3002, 4000, 5000, 5173, 8080, 8000
+
+these all are non-busy and usable ports
+
+there are 4 types of requests
+get, post, put, delete
+
+requests come on a route
+
+mistake:
+
+app.get("kusum", (req,res) => {
+    res.send("kusum!")
+});
+
+if we forget to add / (slash) in the start of the route, the server will give us error
+
+there are two types of dependencies
+1. crucial dependencies:
+this is must required dependencies to run the code
+
+2. development dependencies
+these are for the development purpose
+when we are building the project this were the required dependencies, now i no longer need it.
+
+remove after completion of project
+
+.env 
+
+db connection
+
+we use mongodb
+but we do not directly talk to db with backend
+although we can but it's not a good practice
+
+we use a mongoose package, we will interact with mongoose and it will talk with our mongodb db
+
+mongoose acts as a middleman to talk to our db
+every work we want to perform in our db will be sent to mongoose and mongoose will tell the db to do that work
+
+mongoose stays easy than mongodb
+
+technically mongoose stays in backend
+
+we need database
+then ip_whitelisting
+then username-password
+
+to connect to a database
+
+i want to put this things safely
+so for safety we have .env 
+
+when creating a user of mongodb, must ensure that the password of the user do not contain special characters. that will lead to error in connecting database
+
+
+---------------------------------
+
+project
+
+1. what to build (Authentication)
+2. data to host (what to store in a db)
+    ex: we want to check if a user is verified or not
+    if we don't have verified field in our database, then how we can say them you're verified ?
+
+    for Authentication
+    - name
+    - email
+    - password
+    - role (in the softw. like LMS ex. teachers, students)
+
+    these db structure is called as schema.
+
+    - user verification using otp
+    - when user created account
+    - password reset feature to user
+
+------------------password reset flow------------------
+
+goal: password reset
+
+user sends password reset request on /reset route of the server
+there, he also sends his email
+now this email will go to the database and check if this email exists or not, if not exists, do not allow user to reset the password or send the "account doesn't exists" message...
+
+if the database found that email exists, now we will make a token
+a token is a string of random characters ex. jnegyqhudseq
+
+now send a copy of this token to the user
+and send one copy to database
+
+now user will come again for reset password on /reset-password route
+and now he will enter the token, and we will check that whether this token exists in our database
+
+if yes then we will allow that user to reset his password
+
+that is the whole idea behind the password reset process
+
+now we need some space to store the tokens in our database for users
+so we name this field as "passwordResetToken"
+
+
+basically token will only valid for 5 or 10 mins for that we will have another field named "passwordResetExpires"
+
+
+------------------User verification------------------
+
+when user tries to sign up, he will get an email, whenever he clicks on verify we verify that user
+
+in that email verification, there will be also an email or an otp for verification
+
+now user will go to a page /verify and add that otp now we will compare that otp with our otp which is stored inside database
+
+here also we will follow the same procedure like forgot password
+
+now, to store that verification token in our database we will require a field for that in our database, we can name it as "verificationToken"
+
+mongoose will help us to write that in code
+let's write is in User.model.js file
+
+in mongoose whenever we write timestamp: true
+it will create 2 new fields in our database
+1. created at
+2. updated at
+
+in index.js 
+app.get("/kusum", (req,res) => {
+    res.send("kusum maa!")
+});
+
+here /kusum is a route
+============================
+(req,res) => {
+    res.send("kusum maa!")
+}
+============================
+this is called as controllers because they control the response to send to the user
+
+now we want to separate out routes and controllers
+
+
+_________________________________________
+
+nodemon - node ko monitor karta hai aur zarurat pade to node ko reload kar deta hai
+
+2 dependencies
+
+1. crucial dependencies
+2. development dependencies
+
+
+now we have to import .env variables from .env file to index.js
+for that we have a module named "dotenv"
+which brings all the .env variables to process.env
+
+there, we can use dotconfig() also
+if we have a separate path of .env then we will have to write it in between ()
+
+
+const port = process.env.PORT || 4000;
+
+agar process.env ke andar port miljaaye to achha haiagar nahi mila to 4000 miljaayega
+
+why - bcs of production
+when we deploy our code on render, digital ocean, aws, at that time, this is considered as a best practice
+
+bcs we want to know if env variables are loaded perfectly or not
+bcs server will never allow us to take our port
+
+it decide based on what env variables it is loading
+
+bsc server allocates port to us, not we define the port.
+
+
+cors
+
+in past, with laravel or php, we had the frontend and the backend both together.
+at that time we didn't have frontend and backend separate
+
+after time passed, we separated both frontend and backend
+
+now user will send the req to frontend
+and frontend will send the req to backend
+
+we never expect that client directly send req to the backend
+we expect that only our frontend sends req to our backend
+
+how to restrict that - using cors in index.js
+
+when our frontend will send req to backend, it not necessary that we will interact only with browser
+
+we want to send json data { name : "dharmik" } to our backend
+so in the backend we will write app.use(express.json())
+
+this will allow backend to accept json
+
+sometimes we also try to send data with url
+so in the backend we will write app.use(express.urlencoded({extended:true}));
+
+this will allow our backend to accept data from url
+
