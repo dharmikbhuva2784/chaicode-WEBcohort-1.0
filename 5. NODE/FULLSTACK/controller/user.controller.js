@@ -1,3 +1,5 @@
+import User from "../model/User.model.js";
+
 const registerUser = async(req,res) => {
         
         const { name, email, password } = req.body;
@@ -8,7 +10,14 @@ const registerUser = async(req,res) => {
             });
         }
 
-        
+        try {
+            const existingUser = User.findOne({email})
+            if(existingUser){
+
+            }
+        } catch (error) {
+            
+        }
 };
 
 
