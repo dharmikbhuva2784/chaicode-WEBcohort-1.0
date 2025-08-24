@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model & Grid Exercises</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .exercise {
+            background: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #007acc;
+        }
+        
+        .exercise h4 {
+            color: #007acc;
+            margin-bottom: 10px;
+        }
+        
+        .demo-area {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+        }
+        
+        /* Box Model Exercises */
+        .box-demo {
+            width: 200px;
+            height: 100px;
+            background-color: #007acc;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+        }
+        
+        .box1 {
+            padding: 10px;
+            border: 5px solid #ff6b6b;
+            margin: 15px;
+        }
+        
+        .box2 {
+            padding: 20px 10px;
+            border: 3px dashed #4ecdc4;
+            margin: 10px 20px;
+        }
+        
+        .box3 {
+            padding: 15px;
+            border: 8px solid #45b7d1;
+            margin: 25px;
+            box-sizing: border-box;
+        }
+        
+        .box4 {
+            padding: 20px;
+            border: 10px solid #96ceb4;
+            margin: 30px;
+            box-sizing: content-box;
+        }
+        
+        /* Grid Exercises */
+        .grid-demo {
+            display: grid;
+            gap: 10px;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+        
+        .grid-item {
+            background: #007acc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .grid1 {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100px 100px;
+        }
+        
+        .grid2 {
+            grid-template-columns: 200px 1fr 100px;
+            grid-template-rows: 80px 120px;
+        }
+        
+        .grid3 {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 100px);
+        }
+        
+        .grid4 {
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 60px 1fr 60px;
+            height: 300px;
+        }
+        
+        .grid-item.span-2 {
+            grid-column: span 2;
+            background: #ff6b6b;
+        }
+        
+        .grid-item.span-3 {
+            grid-column: span 3;
+            background: #4ecdc4;
+        }
+        
+        .grid-item.row-span-2 {
+            grid-row: span 2;
+            background: #45b7d1;
+        }
+        
+        .grid-item.header {
+            grid-column: 1 / -1;
+            background: #96ceb4;
+        }
+        
+        .grid-item.sidebar {
+            background: #feca57;
+        }
+        
+        .grid-item.footer {
+            grid-column: 1 / -1;
+            background: #ff9ff3;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 5px;
+        }
+        
+        .controls button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .controls button:hover {
+            background: #005a9e;
+        }
+        
+        .code-display {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Box Model & Grid Interactive Exercises</h1>
+
+        <!-- Box Model Section -->
+        <div class="section">
+            <h2>📦 CSS Box Model Exercises</h2>
+            
+            <div class="exercise">
+                <h4>Exercise 1: Understanding Box Model Components</h4>
+                <p>Observe how padding, border, and margin affect the total space:</p>
+                <div class="demo-area">
+                    <div class="box-demo box1">Box 1</div>
+                    <div class="box-demo box2">Box 2</div>
+                </div>
+                <div class="code-display">
+.box1 { padding: 10px; border: 5px solid red; margin: 15px; }
+.box2 { padding: 20px 10px; border: 3px dashed teal; margin: 10px 20px; }
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 2: Box-sizing Property</h4>
+                <p>Compare content-box vs border-box sizing:</p>
+                <div class="demo-area">
+                    <div class="box-demo box3">Border-box</div>
+                    <div class="box-demo box4">Content-box</div>
+                </div>
+                <div class="code-display">
+.box3 { box-sizing: border-box; } /* Width includes padding + border */
+.box4 { box-sizing: content-box; } /* Width only includes content */
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 3: Interactive Box Model</h4>
+                <div class="controls">
+                    <button onclick="changeBoxPadding()">Change Padding</button>
+                    <button onclick="changeBoxBorder()">Change Border</button>
+                    <button onclick="changeBoxMargin()">Change Margin</button>
+                    <button onclick="toggleBoxSizing()">Toggle Box-sizing</button>
+                </div>
+                <div class="demo-area">
+                    <div id="interactive-box" class="box-demo">Interactive Box</div>
+                </div>
+                <div id="box-info" class="code-display">
+                    Current styles will appear here...
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Section -->
+        <div class="section">
+            <h2>🏗️ CSS Grid Exercises</h2>
+            
+            <div class="exercise">
+                <h4>Exercise 1: Basic Grid Layout</h4>
+                <p>Simple 3-column, 2-row grid:</p>
+                <div class="demo-area">
+                    <div class="grid-demo grid1">
+                        <div class="grid-item">Item 1</div>
+                        <div class="grid-item">Item 2</div>
+                        <div class="grid-item">Item 3</div>
+                        <div class="grid-item">Item 4</div>
+                        <div class="grid-item">Item 5</div>
+                        <div class="grid-item">Item 6</div>
+                    </div>
+                </div>
+                <div class="code-display">
+.grid1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    gap: 10px;
+}
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 2: Mixed Column Sizes</h4>
+                <p>Combining fixed and flexible columns:</p>
+                <div class="demo-area">
+                    <div class="grid-demo grid2">
+                        <div class="grid-item">200px</div>
+                        <div class="grid-item">1fr (flexible)</div>
+                        <div class="grid-item">100px</div>
+                        <div class="grid-item">Fixed</div>
+                        <div class="grid-item">Flexible</div>
+                        <div class="grid-item">Fixed</div>
+                    </div>
+                </div>
+                <div class="code-display">
+.grid2 {
+    grid-template-columns: 200px 1fr 100px;
+    grid-template-rows: 80px 120px;
+}
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 3: Grid with Spanning Items</h4>
+                <p>Items spanning multiple columns and rows:</p>
+                <div class="demo-area">
+                    <div class="grid-demo grid3">
+                        <div class="grid-item span-2">Spans 2 columns</div>
+                        <div class="grid-item">Item 1</div>
+                        <div class="grid-item">Item 2</div>
+                        <div class="grid-item">Item 3</div>
+                        <div class="grid-item row-span-2">Spans 2 rows</div>
+                        <div class="grid-item">Item 4</div>
+                        <div class="grid-item">Item 5</div>
+                        <div class="grid-item span-3">Spans 3 columns</div>
+                    </div>
+                </div>
+                <div class="code-display">
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.row-span-2 { grid-row: span 2; }
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 4: Layout Pattern (Header, Sidebar, Content, Footer)</h4>
+                <p>Common website layout using grid:</p>
+                <div class="demo-area">
+                    <div class="grid-demo grid4">
+                        <div class="grid-item header">Header</div>
+                        <div class="grid-item sidebar">Sidebar</div>
+                        <div class="grid-item">Main Content</div>
+                        <div class="grid-item">Right Column</div>
+                        <div class="grid-item footer">Footer</div>
+                    </div>
+                </div>
+                <div class="code-display">
+.grid4 {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 60px 1fr 60px;
+    height: 300px;
+}
+.header, .footer { grid-column: 1 / -1; }
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise 5: Interactive Grid Builder</h4>
+                <div class="controls">
+                    <button onclick="changeGridColumns()">Change Columns</button>
+                    <button onclick="changeGridRows()">Change Rows</button>
+                    <button onclick="changeGridGap()">Change Gap</button>
+                    <button onclick="addGridItem()">Add Item</button>
+                    <button onclick="removeGridItem()">Remove Item</button>
+                </div>
+                <div class="demo-area">
+                    <div id="interactive-grid" class="grid-demo" style="grid-template-columns: 1fr 1fr; grid-template-rows: 100px 100px;">
+                        <div class="grid-item">Item 1</div>
+                        <div class="grid-item">Item 2</div>
+                        <div class="grid-item">Item 3</div>
+                        <div class="grid-item">Item 4</div>
+                    </div>
+                </div>
+                <div id="grid-info" class="code-display">
+                    Grid: 2 columns, 2 rows, 10px gap
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Practice Challenges</h2>
+            <div class="exercise">
+                <h4>Challenge 1: Create a Card Layout</h4>
+                <p>Use the box model to create a card with proper spacing and borders.</p>
+            </div>
+            <div class="exercise">
+                <h4>Challenge 2: Build a Photo Gallery</h4>
+                <p>Use CSS Grid to create a responsive photo gallery layout.</p>
+            </div>
+            <div class="exercise">
+                <h4>Challenge 3: Design a Dashboard</h4>
+                <p>Combine both concepts to create a dashboard with cards in a grid layout.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Box Model Interactive Functions
+        let currentPadding = 10;
+        let currentBorder = 5;
+        let currentMargin = 20;
+        let isBorderBox = true;
+
+        function changeBoxPadding() {
+            const box = document.getElementById('interactive-box');
+            currentPadding = currentPadding === 10 ? 25 : 10;
+            box.style.padding = currentPadding + 'px';
+            updateBoxInfo();
+        }
+
+        function changeBoxBorder() {
+            const box = document.getElementById('interactive-box');
+            currentBorder = currentBorder === 5 ? 15 : 5;
+            box.style.border = currentBorder + 'px solid #ff6b6b';
+            updateBoxInfo();
+        }
+
+        function changeBoxMargin() {
+            const box = document.getElementById('interactive-box');
+            currentMargin = currentMargin === 20 ? 40 : 20;
+            box.style.margin = currentMargin + 'px';
+            updateBoxInfo();
+        }
+
+        function toggleBoxSizing() {
+            const box = document.getElementById('interactive-box');
+            isBorderBox = !isBorderBox;
+            box.style.boxSizing = isBorderBox ? 'border-box' : 'content-box';
+            updateBoxInfo();
+        }
+
+        function updateBoxInfo() {
+            const info = document.getElementById('box-info');
+            info.textContent = `
+padding: ${currentPadding}px;
+border: ${currentBorder}px solid #ff6b6b;
+margin: ${currentMargin}px;
+box-sizing: ${isBorderBox ? 'border-box' : 'content-box'};
+            `;
+        }
+
+        // Grid Interactive Functions
+        let gridColumns = 2;
+        let gridRows = 2;
+        let gridGap = 10;
+        let gridItemCount = 4;
+
+        function changeGridColumns() {
+            const grid = document.getElementById('interactive-grid');
+            gridColumns = gridColumns === 2 ? 4 : 2;
+            grid.style.gridTemplateColumns = `repeat(${gridColumns}, 1fr)`;
+            updateGridInfo();
+        }
+
+        function changeGridRows() {
+            const grid = document.getElementById('interactive-grid');
+            gridRows = gridRows === 2 ? 3 : 2;
+            grid.style.gridTemplateRows = `repeat(${gridRows}, 100px)`;
+            updateGridInfo();
+        }
+
+        function changeGridGap() {
+            const grid = document.getElementById('interactive-grid');
+            gridGap = gridGap === 10 ? 25 : 10;
+            grid.style.gap = gridGap + 'px';
+            updateGridInfo();
+        }
+
+        function addGridItem() {
+            const grid = document.getElementById('interactive-grid');
+            gridItemCount++;
+            const newItem = document.createElement('div');
+            newItem.className = 'grid-item';
+            newItem.textContent = `Item ${gridItemCount}`;
+            grid.appendChild(newItem);
+            updateGridInfo();
+        }
+
+        function removeGridItem() {
+            const grid = document.getElementById('interactive-grid');
+            if (gridItemCount > 1) {
+                grid.removeChild(grid.lastElementChild);
+                gridItemCount--;
+                updateGridInfo();
+            }
+        }
+
+        function updateGridInfo() {
+            const info = document.getElementById('grid-info');
+            info.textContent = `Grid: ${gridColumns} columns, ${gridRows} rows, ${gridGap}px gap, ${gridItemCount} items`;
+        }
+
+        // Initialize
+        updateBoxInfo();
+        updateGridInfo();
+    </script>
+</body>
+</html>

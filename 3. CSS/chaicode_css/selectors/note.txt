@@ -1,0 +1,3 @@
+dom - document object model
+how your page is structured / layed out
+it is like a tree structure

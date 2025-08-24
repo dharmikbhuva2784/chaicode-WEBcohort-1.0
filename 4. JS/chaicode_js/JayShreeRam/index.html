@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jay Shree Ram Page</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(
+          45deg,
+          rgba(247, 255, 0, 1) 0%,
+          rgba(255, 151, 0, 1) 100%
+        );
+      }
+    </style>
+  </head>
+  <body
+    class="m-0 p-0 flex box-border font-rubik min-h-screen justify-center items-center"
+  >
+    <div class="bg-gray-50 m-0 p-10 rounded-xl shadow-2xl z-10">
+      <img src="./hanuman.png" class="mb-10" />
+      <h1
+        class="text-6xl text-center text-amber-500 mb-7"
+        style="text-shadow: 3px 3px #000"
+      >
+        Jai Shree Ram
+      </h1>
+      <p
+        class="text-4xl text-center mb-7 font-bold italic underline decoration-wavy decoration-red-600"
+      >
+        Ram Rajya is coming soon...
+      </p>
+      <form class="mb-5 mt-5" id="myForm">
+        <input type="text" placeholder="Enter your email" 
+        class="w-full mb-7 p-5 text-3xl border-5 border-amber-500 box-border focus:outline-none rounded-2xl focus:border-red-600 transition"
+        />
+        <input
+            id="submitBtn"
+          type="submit"
+          value="Subscribe"
+          class="block w-full font-bold bg-amber-500 p-5 text-3xl rounded-2xl hover:cursor-pointer hover:bg-red-600 hover:text-white transition active:bg-red-800"
+          style="box-shadow: 5px 5px #000"
+        />
+      </form>
+    </div>
+    <img src="./wave.svg" class="absolute bottom-0 left-0 w-full z-2" />
+
+    <script>
+        const submitBtn = document.getElementById("submitBtn");
+        const myForm = document.getElementById("myForm");
+
+        myForm.addEventListener('submit',function(event){
+            event.preventDefault();
+        })
+    </script>
+  </body>
+</html>

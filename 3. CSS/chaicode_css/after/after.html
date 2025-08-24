@@ -1,0 +1,36 @@
+<style>
+    span[data-description] {
+    position: relative;
+    text-decoration: underline;
+    color: blue;
+    cursor: help;
+    }
+
+    span[data-description]:hover::after,
+    span[data-description]:focus::after {
+    content: attr(data-description);
+    position: absolute;
+    left: 0;
+    top: 24px;
+    min-width: 200px;
+    border: 1px #aaaaaa solid;
+    border-radius: 10px;
+    background-color: #ffffcc;
+    padding: 12px;
+    color: black;
+    font-size: 14px;
+    z-index: 1;
+    }
+
+</style>
+
+<p>
+  Here we have some
+  <span tabindex="0" data-description="collection of words and punctuation">
+    text
+  </span>
+  with a few
+  <span tabindex="0" data-description="small popups that appear when hovering">
+    tooltips</span
+  >.
+</p>
